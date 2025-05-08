@@ -3,7 +3,7 @@
 #################################################################################
 
 PROJECT_NAME = Breast-Cancer-Classification---SE489
-PYTHON_VERSION = 3.10
+PYTHON_VERSION = 3.11
 PYTHON_INTERPRETER = python
 
 #################################################################################
@@ -17,8 +17,6 @@ requirements:
 	$(PYTHON_INTERPRETER) -m pip install -U pip
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 	
-
-
 
 ## Delete all compiled Python files
 .PHONY: clean
@@ -39,12 +37,16 @@ format:
 	ruff check --fix
 	ruff format
 
+# Check types on module
+.PHONY: type_check 
+type_check:
+	mypy .\breast_cancer_classification\
 
-
+## Currently tests are not implemented
 ## Run tests
-.PHONY: test
-test:
-	python -m unittest discover -s tests
+#.PHONY: test # By default, Makefile targets are "file targets" - they are used to build files from other files. Make assumes its target is a file, and this makes writing Makefiles relatively easy:
+#test:
+#	#python -m unittest discover -s tests
 
 
 ## Set up Python interpreter environment
@@ -56,6 +58,17 @@ create_environment:
 	@echo ">>> conda env created. Activate with:\nconda activate $(PROJECT_NAME)"
 	
 
+process_data:
+	python .\breast_cancer_classification\dataset.py
+
+train_model:
+	python .\breast_cancer_classification\modeling\train.py
+
+test_model:
+	python .\breast_cancer_classification\modeling\predict.py
+	
+run_full_model_pipeline:
+	python run.py
 
 
 #################################################################################
