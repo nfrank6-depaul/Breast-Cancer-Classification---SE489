@@ -65,9 +65,12 @@ After reviewing the tool recommended in the documentation, Prometheus, it was de
   - [ ] Example log entries and their meaning
 
 ## 6. Configuration Management
-- [ ] **6.1 Hydra or Similar**
-  - [ ] Configuration files created
-  - [ ] Example of running experiments with different configs
+  **6.1 Hydra or Similar**
+- Hydra is a tool used in MLOPs for configuring parameters in one’s project pipeline. Thus, I created three different yaml files to be used by hydra. The first file is a config.yaml file. This file drives much of the relevant information regarding both the inputs and the outputs of our team’s model. Our team is modelling breast cancer classification and as a result we are using a logistic regression for our model which means our parameters used in hydra, reflect those of a logistic regression. 
+- We separated the config.yaml file into three areas, data, train, model. The section labelled Data hold the information regarding where the features and labels will be written to. It also holds the file path to the dataset for training the model. The train section sets whether debugging is defaulted to and whether the data should be scaled. It also contains the random state and test size. The model section pertains to the parameters used in the model and their associated values. For our model the only parameter we used was max_iter which controls the maximum amount of iterations for the fitting of the model. It also contains the path where the model will be dumped to a pkl file. 
+We also created a file called hydra.yaml. This file helps indicate where files should be saved. Additionally it covers that log messages should be associated with levels and timestamps. It also covers the run setting for the experiments we could be running in hydra. We also create an overrides file that controls anything that may need to be overwritten like command line overrides. Since we don’t have any in our model this file is effectively blank.
+- For our hydra experiment we decided to only run one model. This is because Nikki was able to use other MLOPs tool for optimization to find the optimal model. Thus, it would have been redundant to reproduce multiple experiments when the optimal model was found. Despite only making 1 model, the structure of the pipeline allows for many more models to be made. Specifically, the config.yaml file could be rewritten to test a broader swath of parameter values. Additionally, we could have tested more logistic regression parameters like the C value which controls the regularization parameter. We also made the random state a parameter that can be maintained or changed so that our experiment can be replicable by other users of this overall pipeline, with reproducible results.  Ultimately, we used hydra to test and reuse experiments in an easily iterable and reproducible manner.
+
 
 ## 7. Documentation & Repository Updates
 - [ ] **7.1 Updated README**
