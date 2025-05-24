@@ -80,9 +80,10 @@ We also created a file called hydra.yaml. This file helps indicate where files s
 
 
 ## 7. Documentation & Repository Updates
-- [ ] **7.1 Updated README**
-  - [ ] Instructions for all new tools and processes
-  - [ ] All scripts and configs included in repo
+- [X] **7.1 Updated README**
+  - [X] Instructions for all new tools and processes
+  -  [text](.hydra/config.yaml)
+  -  [text](.hydra/hydra.yaml)
 
 ---
 
