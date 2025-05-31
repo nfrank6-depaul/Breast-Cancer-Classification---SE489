@@ -13,6 +13,8 @@ jobs:
         with:
           python-version: '3.11'
 
+      - uses: iterative/setup-cml@v1
+
       - name: Install system dependencies
         run: |
           sudo apt-get update
