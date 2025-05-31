@@ -134,8 +134,8 @@ hydra:
     - path: hydra.conf
       schema: pkg
       provider: hydra
-    - path: /Users/nicole.r.frank/Breast-Cancer-Classification---SE489/breast_cancer_classification/conf
-      schema: file
+    - path: breast_cancer_classification.conf
+      schema: pkg
       provider: main
     - path: ''
       schema: structured
