@@ -1,34 +1,19 @@
 name: model-training
-
 on:
   push:
     branches: [main]
-
 jobs:
   run:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
-
       - uses: actions/setup-python@v4
-        with:
-          python-version: 3.11  # Safer than 3.12; more packages are compatible
-
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y g++ build-essential
-
-      - name: Install Python dependencies
-        run: |
-          pip install --upgrade pip setuptools wheel
-          pip install -r requirements.txt
-
+      - uses: iterative/setup-cml@v1
       - name: Train model
         env:
           REPO_TOKEN: ${{ secrets.GITSHUB_TOKEN }}
         run: |
+          pip install -r requirements.txt
           python breast_cancer_classification/modeling/train.py
 
           cat metrics.txt >> report.md
