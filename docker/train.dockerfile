@@ -26,6 +26,9 @@ RUN pip install -r requirements.txt --no-cache-dir
 # Install all the packages no-deps. This command currently takes _way_ to long.
 #RUN pip install . --no-deps --no-cache-dir 
 
+# Need this directory to exist for logging
+RUN mkdir -p /logs
+
 # Run this command when the container launches.
 # -u line by line
 ENTRYPOINT ["python", "-u", "breast_cancer_classification/modeling/train.py"]
