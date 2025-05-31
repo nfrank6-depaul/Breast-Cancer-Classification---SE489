@@ -183,4 +183,4 @@ cython_debug/
 .pypirc
 
 #Ignore local secrets
-.dvc/secrets/
+.dvc/secrets/service_account.json
