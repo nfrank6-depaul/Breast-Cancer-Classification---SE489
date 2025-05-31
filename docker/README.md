@@ -1,10 +1,11 @@
 # Docker 
 
 ## Overview
-In the Breast Cancer Classification project we have two docker files.
+In the Breast Cancer Classification project we have three docker files.
 
 - `train.dockerfile` - The train image is run when we want to train the model.
 - `predict.dockerfile` - The predict image is run when we want to generate predictions.
+- `run.dockerfile` - This is used for whole project deployments
 
 ## Docker Installation Instructions
 
@@ -41,6 +42,10 @@ Running:
 - Run `docker run --name <name> <tag-name>:latest`  
 
 Example: `docker run --name exp1 train:latest`
+
+Building run.dockerfile - docker build -f docker/run.dockerfile -t myproject/run:latest .      
+Run that docker image - docker run --rm myproject/run:latest
+
 
 ## Moving Files
 

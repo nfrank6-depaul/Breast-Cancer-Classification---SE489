@@ -2,6 +2,7 @@ import os.path
 from pathlib import Path
 import sys
 import time
+import shutil
 from datetime import datetime
 
 from rich.console import Console
@@ -103,6 +104,18 @@ def main(
 ):
     log.info("Starting data preprocessing pipeline")
     start_time = time.time()
+
+    # Check if the DVC-tracked source file exists
+    dvc_source = Path("data/breast-cancer.csv")
+    raw_destination = RAW_DATA_DIR / "dataset.csv"
+    raw_destination.parent.mkdir(parents=True, exist_ok=True)
+
+    if dvc_source.exists():
+        shutil.copy(dvc_source, raw_destination)
+        log.info(f"Copied DVC-tracked file from {dvc_source} to {raw_destination}")
+    else:
+        log.warning(f"{dvc_source} not found, using existing file at {raw_destination} if available.")
+
     log.info(f"Loading data from: {input_path}")
     data = load_data(input_path)
     preprocess_data(data)
